@@ -137,7 +137,7 @@
             <configuration_option name="phar.cache_list" value="" />
             <configuration_option name="phar.readonly" value="1" />
             <configuration_option name="phar.require_hash" value="1" />
-            <configuration_option name="post_max_size" value="8M" />
+            <configuration_option name="post_max_size" value="3M" />
             <configuration_option name="precision" value="14" />
             <configuration_option name="realpath_cache_size" value="16K" />
             <configuration_option name="realpath_cache_ttl" value="120" />
@@ -192,7 +192,7 @@
             <configuration_option name="user_dir" value="" />
             <configuration_option name="user_ini.cache_ttl" value="300" />
             <configuration_option name="user_ini.filename" value=".user.ini" />
-            <configuration_option name="variables_order" value="GPCS" />
+            <configuration_option name="variables_order" value="EGPCS" />
             <configuration_option name="windows.show_crt_warning" value="0" />
             <configuration_option name="xmlrpc_error_number" value="0" />
             <configuration_option name="xmlrpc_errors" value="0" />
