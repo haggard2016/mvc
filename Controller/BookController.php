@@ -1,6 +1,6 @@
 <?php
 
-class BookController
+class BookController extends Controller
 {
     /**
      * @param Request $request
@@ -8,6 +8,45 @@ class BookController
      */
     public function indexAction(Request $request)
     {
-        return '<b>This is index action of book controller</b>';
+        $model = new BookModel();
+        $books = $model->findAll();
+
+        $args = compact('books');
+
+        return $this->render('index', $args);
     }
+
+
+    public function showAction(Request $request)
+    {
+        $id = $request->get('id');
+        $book = (new BookModel())->findById($id);
+
+        $args = compact('book');
+        return $this->render('show', $args);
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
