@@ -1,0 +1,8 @@
+<h1>Books</h1>
+
+<?php foreach ($books as $book) : ?>
+   Title:  <?=$book['title']?><br>
+   Price:  <?=$book['price']?><br>
+    <a href="/index.php?route=book/show&amp;id=<?=$book['id']?>">Details</a>
+    <hr>
+<?php endforeach; ?>
