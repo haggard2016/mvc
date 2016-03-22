@@ -16,6 +16,6 @@ class FeedbackModel
         $sth = $db->prepare('INSERT INTO feedback VALUES
                               (:id, :username, :email, :message, :created, :ip)');
 
-
+        $sth->execute($message);
     }
 }

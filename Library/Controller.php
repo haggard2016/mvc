@@ -14,6 +14,10 @@ abstract class Controller
 
         ob_start();
         require $file;
+        $content = ob_get_clean();
+
+        ob_start();
+        require VIEW_DIR . 'default_layout.phtml';
         return ob_get_clean();
     }
 
@@ -21,6 +25,10 @@ abstract class Controller
     {
         ob_start();
         require VIEW_DIR . 'error.phtml';
+        $content = ob_get_clean();
+
+        ob_start();
+        require VIEW_DIR . 'default_layout.phtml';
         return ob_get_clean();
     }
 }

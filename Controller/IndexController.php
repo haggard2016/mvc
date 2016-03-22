@@ -8,6 +8,10 @@ class IndexController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+
+
+
         $model = new PageModel();
         $page = $model->findByAlias('homepage');
 
@@ -25,21 +29,24 @@ class IndexController extends Controller
     public function contactAction(Request $request)
     {
         $form = new ContactForm($request);
-        $flash = strip_tags($request->get('flash'));
+        $datetime = new DateTime();
 
         if ($request->isPost()) {
             if ($form->isValid()) {
+                (new FeedbackModel())->save(array(
+                    'id' => null,
+                    'username' => $form->username,
+                    'email' => $form->email,
+                    'message' => $form->message,
+                    'created' => $datetime->format('Y-m-d H:i:s'),
+                    'ip' => $request->getIpAddress()
+                ));
 
-                file_put_contents(
-                    DATA_DIR . 'contact_form.txt',
-                    $form->getSerializedData() . PHP_EOL,
-                    FILE_APPEND
-                    );
-
-                Router::redirect('/index.php?route=index/contact&flash=Message sent');
+                Session::setFlash('Message sent');
+                Router::redirect('/index.php?route=index/contact');
             }
 
-            $flash = 'Fill the fields';
+            Session::setFlash('Fill the fields');
         }
 
 //        $args = array(
@@ -47,7 +54,7 @@ class IndexController extends Controller
 //            'flash' => $flash
 //        );
 
-        $args = compact('form', 'flash');
+        $args = compact('form');
 
         return $this->render('contact', $args);
     }

@@ -1,6 +1,6 @@
 <h1>Contact form</h1>
 
-<?=$flash?>
+<b><?=Session::getFlash()?></b>
 <form method="post">
     <input type="text" name="username" value="<?=$form->username?>"> <br>
     <input type="email" name="email" value="<?=$form->email?>"> <br>
