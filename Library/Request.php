@@ -63,9 +63,25 @@ class Request
         return null;
     }
 
+    /**
+     * @return null
+     */
     public function getIpAddress()
     {
         return $this->server('REMOTE_ADDR');
+    }
+
+    public function getURI()
+    {
+        $uri = $this->server('REQUEST_URI');
+        $uri = explode('?', $uri);
+        return $uri[0];
+    }
+
+    public function mergeGet(array $params)
+    {
+        $this->get += $params;
+        $_GET += $params;
     }
 
 

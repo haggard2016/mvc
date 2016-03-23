@@ -36,6 +36,27 @@ class BookModel
 
         return $data;
     }
+
+    public function findByIdArray(array $ids)
+    {
+        if (!$ids) {
+            return array();
+        }
+
+        $params = array();
+
+        foreach ($ids as $v) {
+            $params[] = '?';
+        }
+
+        $params = implode(',', $params);
+
+        $db = DbConnection::getInstance()->getPdo();
+        $sth = $db->prepare("SELECT * FROM book WHERE status = 1 AND id IN ({$params}) ORDER BY price");
+        $sth->execute($ids);
+
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 

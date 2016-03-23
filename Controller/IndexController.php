@@ -43,16 +43,11 @@ class IndexController extends Controller
                 ));
 
                 Session::setFlash('Message sent');
-                Router::redirect('/index.php?route=index/contact');
+                Router::redirect('/contact-us');
             }
 
             Session::setFlash('Fill the fields');
         }
-
-//        $args = array(
-//            'form' => $form,
-//            'flash' => $flash
-//        );
 
         $args = compact('form');
 

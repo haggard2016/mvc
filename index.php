@@ -31,18 +31,13 @@ function __autoload($className)
 try {
     Session::start();
     Config::setFromXML('db.xml');
+    Router::init('routes.php');
 
     $request = new Request();
-    $route = $request->get('route');
+    Router::match($request);
 
-    if (is_null($route)) {
-        $route = 'index/index';
-    }
-
-    $route = explode('/', $route);
-
-    $controller = ucfirst(strtolower($route[0])) . 'Controller'; // like: book ---> BookController
-    $action = $route[1] . 'Action';
+    $controller = Router::$controller;
+    $action = Router::$action;
 
     $controller = new $controller();
 
@@ -59,7 +54,7 @@ try {
 
 echo $content;
 
-
-echo '<hr> <b>Debug</b>: <br>';
-
-var_dump($route, $controller, $action);
+//
+//echo '<hr> <b>Debug</b>: <br>';
+//
+//var_dump($route, $controller, $action);
