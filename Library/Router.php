@@ -36,12 +36,13 @@ abstract class Router
 
             foreach ($route->params as $k => $v) {
                 $regex = str_replace('{' . $k . '}', '(' . $v . ')', $regex);
+               // echo "$regex <br>";
             }
 
             // если нашли совпадение по регулярному выражению
             if (preg_match('@^' . $regex . '$@', $uri, $matches)) {
-                array_shift($matches);
 
+                array_shift($matches);
                 if ($matches) {
                     $matches = array_combine(array_keys($route->params), $matches);
                     $request->mergeGet($matches);

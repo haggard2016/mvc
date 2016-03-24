@@ -9,6 +9,11 @@
 <a href="/books">Books</a>
 <a href="/contact-us">Contact</a>
 <a href="/cart">Cart</a>
+<?php if (Session::has('user')) : ?>
+    <a href="/logout">Logout</a>
+<?php else : ?>
+    <a href="/login">Login</a>
+<?php endif;?>
 <hr>
 
 
