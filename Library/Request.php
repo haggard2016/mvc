@@ -4,6 +4,7 @@ class Request
 {
     private $get;
     private $post;
+    private $server;
 
     /**
      * Request constructor.
@@ -12,6 +13,7 @@ class Request
     {
         $this->get = $_GET;
         $this->post = $_POST;
+        $this->server = $_SERVER;
     }
 
     /**
@@ -47,5 +49,40 @@ class Request
 
         return null;
     }
+
+    /**
+     * @param $key
+     * @return null
+     */
+    public function server($key)
+    {
+        if (isset($this->server[$key])) {
+            return $this->server[$key];
+        }
+
+        return null;
+    }
+
+    /**
+     * @return null
+     */
+    public function getIpAddress()
+    {
+        return $this->server('REMOTE_ADDR');
+    }
+
+    public function getURI()
+    {
+        $uri = $this->server('REQUEST_URI');
+        $uri = explode('?', $uri);
+        return $uri[0];
+    }
+
+    public function mergeGet(array $params)
+    {
+        $this->get += $params;
+        $_GET += $params;
+    }
+
 
 }

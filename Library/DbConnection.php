@@ -14,7 +14,9 @@ class DbConnection
 
     private function __construct()
     {
-        $this->pdo = new PDO('mysql: host=localhost; dbname=mvc1102', 'root');
+        $dsn = 'mysql: host=' . Config::get('host') . '; dbname='. Config::get('dbname'); // like:  mysql: host=localhost; dbnam=mvc1102
+
+        $this->pdo = new PDO($dsn, Config::get('user'), Config::get('pass'));
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo->exec('SET NAMES utf8');
     }

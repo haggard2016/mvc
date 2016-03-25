@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mega site</title>
+    <title><?=MetaHelper::getTitle();?></title>
 </head>
 <body>
 <a href="/">Home</a>
-<a href="/index.php?route=book/index">Books</a>
-<a href="/index.php?route=index/contact">Contact</a>
+<a href="/books">Books</a>
+<a href="/contact-us">Contact</a>
+<a href="/cart">Cart</a>
+<?php if (Session::has('user')) : ?>
+    <a href="/logout">Logout</a>
+<?php else : ?>
+    <a href="/login">Login</a>
+<?php endif;?>
 <hr>
 
 
@@ -24,6 +30,6 @@
 <br>
 
 <hr>
-All rights reserved &copy; 2016
+All rights reserved &copy; 1980 - <?=date('Y')?>
 </body>
 </html>

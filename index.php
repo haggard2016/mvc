@@ -6,6 +6,7 @@ define('LIB_DIR', ROOT . 'Library' . DS);
 define('CONTROLLER_DIR', ROOT . 'Controller' . DS);
 define('MODEL_DIR', ROOT . 'Model' . DS);
 define('DATA_DIR', ROOT . '_data' . DS);
+define('CONF_DIR', ROOT . 'Config' . DS);
 
 
 /**
@@ -28,17 +29,15 @@ function __autoload($className)
 }
 
 try {
+    Session::start();
+    Config::setFromXML('db.xml');
+    Router::init('routes.php');
+
     $request = new Request();
-    $route = $request->get('route');
+    Router::match($request);
 
-    if (is_null($route)) {
-        $route = 'index/index';
-    }
-
-    $route = explode('/', $route);
-
-    $controller = ucfirst(strtolower($route[0])) . 'Controller'; // like: book ---> BookController
-    $action = $route[1] . 'Action';
+    $controller = Router::$controller;
+    $action = Router::$action;
 
     $controller = new $controller();
 
@@ -53,9 +52,9 @@ try {
     $content = Controller::renderError($e->getCode(), $e->getMessage());
 }
 
+echo $content;
 
-require VIEW_DIR . 'default_layout.phtml';
-
-echo '<hr> <b>Debug</b>: <br>';
-
-var_dump($route, $controller, $action);
+//
+//echo '<hr> <b>Debug</b>: <br>';
+//
+//var_dump($route, $controller, $action);
