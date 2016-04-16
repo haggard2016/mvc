@@ -1,4 +1,9 @@
 <application>
+  <component name="PhpCodeSniffer">
+    <phpcs_settings>
+      <PhpCSConfiguration />
+    </phpcs_settings>
+  </component>
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter home="C:\xampp\php\php.exe" id="54142f4b-98e7-4065-8fc4-0c5a6dcec201" name="PHP7" debugger_id="php.debugger.XDebug" />
