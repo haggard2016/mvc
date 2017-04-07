@@ -29,7 +29,7 @@
         <option name="WIKILINKS" value="true" />
       </PegdownExtensions>
       <ParserOptions>
-        <option name="EMOJI_SHORTCUTS" value="true" />
+        <option name="EMOJI_SHORTCUTS" value="false" />
         <option name="GITHUB_EMOJI_URL" value="false" />
         <option name="GITHUB_WIKI_LINKS" value="true" />
         <option name="JEKYLL_FRONT_MATTER" value="false" />
